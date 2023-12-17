@@ -108,27 +108,27 @@ export default {
         : null;
     }
 
-    const rootSkillsProgress = computed(() => {
-      return [
-        {
-          heading: 'Headings.ActiveSkills',
-          body: 'Body.ActiveSkills',
-          skills: rootSkills.value.filter((skill: any) => skill.progress > 0),
-        },
-        {
-          heading: 'Headings.CompletedSkills',
-          body: 'Body.CompletedSkills',
-          skills: rootSkills.value.filter(
-            (skill: any) => skill.progress == 100
-          ),
-        },
-        {
-          heading: 'Headings.OtherSkills',
-          body: 'Body.OtherSkills',
-          skills: rootSkills.value.filter((skill: any) => skill.progress == 0),
-        },
-      ];
-    });
+		const rootSkillsProgress = computed(() => {
+			return [
+				{
+					heading: 'Headings.ActiveSkills',
+					body: 'Body.ActiveSkills',
+					skills: rootSkills.value.filter((skill: any) => skill.progress < 100 && skill.xp > 0),
+				},
+				{
+					heading: 'Headings.CompletedSkills',
+					body: 'Body.CompletedSkills',
+					skills: rootSkills.value.filter(
+						(skill: any) => skill.progress == 100
+					),
+				},
+				{
+					heading: 'Headings.OtherSkills',
+					body: 'Body.OtherSkills',
+					skills: rootSkills.value.filter((skill: any) => skill.progress < 100 && skill.xp == 0),
+				},
+			];
+		});
 
     return { t, loading, xp, rootSkillsProgress };
   },
